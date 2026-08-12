@@ -1,6 +1,6 @@
 # Booked4Seasons LeadConnector Chat Widget
 
-Widget ID: `6a7ca95093aa928cd28c82f8`
+Widget ID: `6a7ca95893aa928cd28c82f8`
 
 The widget is loaded once sitewide from `components/LeadConnectorChat.tsx` through `app/layout.tsx`.
 
@@ -10,7 +10,7 @@ The widget is loaded once sitewide from `components/LeadConnectorChat.tsx` throu
 <script
   src="https://widgets.leadconnectorhq.com/loader.js"
   data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-  data-widget-id="6a7ca95093aa928cd28c82f8"
+  data-widget-id="6a7ca95893aa928cd28c82f8"
   data-source="WEB_USER">
 </script>
 ```
@@ -55,7 +55,7 @@ LeadConnector's documented advanced configuration supports an `open-icon-url` wh
 Before launch:
 
 - widget loads once, not once per page transition;
-- widget ID is exactly `6a7ca95093aa928cd28c82f8`;
+- widget ID is exactly `6a7ca95893aa928cd28c82f8`;
 - no console errors caused by duplicate loader injection;
 - Booked4Seasons logo/brand appears in the widget configuration;
 - mobile launcher and expanded panel fit the viewport;
