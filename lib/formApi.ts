@@ -9,7 +9,7 @@ export async function submitPublicForm(payload: PublicFormPayload) {
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), 12_000);
   try {
-    const response = await fetch(url, { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify(payload), signal: controller.signal, credentials: "omit" });
+    const response = await fetch(url, { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify(payload), signal: controller.signal, credentials: "omit", referrerPolicy: "strict-origin-when-cross-origin" });
     if (!response.ok) throw new FormApiError("The request could not be submitted.", response.status);
   } catch (error) {
     if (error instanceof FormApiError) throw error;
