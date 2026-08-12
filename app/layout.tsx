@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { LeadConnectorChat } from "@/components/LeadConnectorChat";
 import { legal } from "@/lib/legal";
 
 export const metadata: Metadata = {
@@ -14,5 +15,5 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const structuredData={"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://booked4seasons.com/#organization",name:"Booked4Seasons",legalName:legal.operator,url:"https://booked4seasons.com",logo:"https://booked4seasons.com/images/brand/logo-primary.svg",description:legal.platformDescription},{"@type":"WebSite","@id":"https://booked4seasons.com/#website",url:"https://booked4seasons.com",name:"Booked4Seasons",publisher:{"@id":"https://booked4seasons.com/#organization"}}]};
-  return <html lang="en"><body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(structuredData)}}/><a className="skip-link" href="#main-content">Skip to main content</a><Header /><main id="main-content">{children}</main><Footer /></body></html>;
+  return <html lang="en"><body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(structuredData)}}/><a className="skip-link" href="#main-content">Skip to main content</a><Header /><main id="main-content">{children}</main><Footer /><LeadConnectorChat /></body></html>;
 }
