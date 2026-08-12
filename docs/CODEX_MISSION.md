@@ -1,14 +1,29 @@
-# MASTER_MISSION=BREERO_COMPLETE_PUBLIC_FRONTEND_ALL_PAGES_IMAGES_LINKS_BUTTONS_AND_LAUNCH
+# MASTER_MISSION=booked4seasons.com_COMPLETE_PUBLIC_FRONTEND_ALL_PAGES_IMAGES_LINKS_BUTTONS_AND_LAUNCH
 
 Repository: `appolon1908-hue/booked4seasons`
 Domain: `booked4seasons.com`
-Production frontend server: `49.12.145.207`
+Production frontend server: `49.12.145.107`
 Scope: **PUBLIC FRONTEND ONLY**
 Brand: **Booked4Seasons**
 
-This is the one completion mission. Continue until every public frontend item below is complete or a real external blocker exists. Do not stop for routine confirmation.
+This is the single authoritative completion mission for `booked4seasons.com`. Continue until every public frontend item below is complete or a real external blocker exists. Do not stop for routine confirmation.
 
-## 1. Read first — source of truth
+## 1. Identity lock — non-negotiable
+
+The only website/domain identity for this mission is:
+
+- Brand: `Booked4Seasons`
+- Domain: `booked4seasons.com`
+- Repository: `appolon1908-hue/booked4seasons`
+- Production frontend server: `49.12.145.107`
+
+Do not introduce any unrelated project, company, campaign, codename, or legacy mission name into UI copy, source comments, documentation, metadata, SEO, image names, components, Docker files, deployment files, reports, or completion output.
+
+When naming the master mission, always use exactly:
+
+`MASTER_MISSION=booked4seasons.com_COMPLETE_PUBLIC_FRONTEND_ALL_PAGES_IMAGES_LINKS_BUTTONS_AND_LAUNCH`
+
+## 2. Read first — source of truth
 
 Before changing UI or imagery, read and obey:
 
@@ -19,34 +34,35 @@ Before changing UI or imagery, read and obey:
 5. `lib/pageImages.ts`
 6. `lib/services.ts`
 
-If concept artwork, old copy, or old routes conflict with these files, the canonical brand/service/image documentation wins.
+If concept artwork, old copy, old routes, old server information, or old mission text conflicts with these files, the canonical Booked4Seasons documentation wins.
 
-## 2. Final objective
+## 3. Final objective
 
-Deliver a premium, clean, friendly, local, trustworthy, modern, mobile-first Booked4Seasons public website where:
+Deliver a premium, clean, friendly, local, trustworthy, modern, mobile-first `booked4seasons.com` public website where:
 
 - all 28 canonical public pages render;
 - all 17 canonical service routes render from shared service architecture;
 - all required production images are present and displayed in their documented slots;
-- every internal link resolves;
+- every internal URL resolves;
 - every CTA and button performs a real intentional action;
 - header, mega-menu, mobile navigation, and footer work on all pages;
 - forms behave honestly and never fake successful submission;
 - SEO metadata, sitemap, robots, structured data, accessibility, responsive behavior, and performance are production-ready;
-- `npm run typecheck`, `npm run lint`, `npm run build`, and the production Docker build pass.
+- `npm run typecheck`, `npm run lint`, `npm run build`, visual QA, and the production Docker build pass;
+- the frontend remains compatible with deployment to `49.12.145.107`.
 
 Primary message: **Whatever your property needs, get it booked.**
 Tagline: **Home Services for Every Season.**
 Primary CTA: **Request Service**
 Secondary CTA: **Explore Services**
 
-## 3. Hard scope boundary
+## 4. Hard scope boundary
 
 Do not build or deploy backend, database, authentication, payments, customer portal, provider portal, operations portal, dispatch, CRM, workers, queues, or unrelated services.
 
 Do not add off-catalog services. The canonical service catalog is exactly the 17 services in `lib/services.ts`.
 
-## 4. Canonical public routes — all must work
+## 5. Canonical public routes — all must work
 
 1. `/`
 2. `/services`
@@ -77,9 +93,9 @@ Do not add off-catalog services. The canonical service catalog is exactly the 17
 27. `/privacy`
 28. `/terms`
 
-Maintain existing legitimate legacy policy routes/aliases if already implemented, but do not let them replace or break the canonical 28-page target.
+Maintain existing legitimate Booked4Seasons policy routes/aliases if already implemented, but do not let them replace or break the canonical 28-page target.
 
-## 5. Global navigation and link contract
+## 6. Global navigation and link contract
 
 Desktop header order:
 
@@ -98,7 +114,7 @@ Audit every `<Link>`, `<a>`, button, form submit, card action, hero CTA, footer 
 
 Buttons that navigate must use real routes. External contact actions must use verified `mailto:`/`tel:`/approved URLs only. Buttons that submit forms must expose pending/error state and must not report success unless the configured endpoint returns success.
 
-## 6. Image completion mission
+## 7. Image completion mission
 
 Use the exact canonical paths from `lib/pageImages.ts` and `docs/IMAGE_PLACEMENT_MANIFEST.md`.
 
@@ -140,7 +156,7 @@ Required launch photography/artwork slots:
 
 FAQ, Privacy, and Terms intentionally require no dedicated photography.
 
-Also retain approved brand assets under `/images/brand/`.
+Also retain approved Booked4Seasons brand assets under `/images/brand/`.
 
 For every image:
 
@@ -157,7 +173,7 @@ For every image:
 
 If an image binary is genuinely missing, create/use one intentional local branded placeholder while preserving the final canonical path and report the exact missing asset. Never redesign the page around a missing asset.
 
-## 7. Homepage completion
+## 8. Homepage completion
 
 Required order:
 
@@ -179,7 +195,7 @@ Hero primary CTA → `/request-service`.
 Hero secondary CTA → `/services`.
 Popular service cards and category links must resolve to correct routes.
 
-## 8. Services directory and reusable service pages
+## 9. Services directory and reusable service pages
 
 `/services` must display all 17 services grouped into exactly four categories: Home Comfort, Home & Property, Specialty, Vehicle.
 
@@ -203,7 +219,7 @@ Every service page must include:
 - final Request Service CTA;
 - shared footer.
 
-## 9. Conversion/company pages
+## 10. Conversion/company pages
 
 ### `/request-service`
 Use `/images/company/request-service.webp`. Keep the frontend request form complete and accessible. If no approved endpoint exists, live submission is unavailable and the UI must say so honestly.
@@ -226,7 +242,7 @@ Use `/images/company/become-a-pro.webp`. Informational/provider-interest page on
 ### `/faq`, `/privacy`, `/terms`
 Keep lightweight, accessible, readable, and free from unnecessary photography.
 
-## 10. Brand system
+## 11. Brand system
 
 Use the exact approved system from `lib/brand.ts` / `docs/BRAND_UI_SPEC.md`:
 
@@ -240,7 +256,7 @@ Use the exact approved system from `lib/brand.ts` / `docs/BRAND_UI_SPEC.md`:
 
 Do not introduce a second visual language. Header, footer, cards, buttons, image treatment, spacing, radii, typography, and surfaces must remain consistent page to page.
 
-## 11. Accessibility and responsive QA
+## 12. Accessibility and responsive QA
 
 Required:
 
@@ -256,25 +272,25 @@ Required:
 
 Test at minimum: 375, 430, 768, 1024, 1280, 1440, and 1920 widths. Explicit QA snapshots/checks must include 390×844, 768×1024, and 1440×900.
 
-## 12. SEO / metadata / URLs
+## 13. SEO / metadata / URLs
 
-Every canonical public page requires unique title, unique description, canonical URL, correct H1 hierarchy, and appropriate Open Graph metadata.
+Every canonical public page requires unique title, unique description, canonical URL on `https://booked4seasons.com`, correct H1 hierarchy, and appropriate Open Graph metadata.
 
 Service pages must have service-specific metadata and valid breadcrumb/service/FAQ structured data where factual.
 
-Audit and correct `app/sitemap.ts` and `app/robots.ts`. Sitemap must include every published canonical route and must not contain broken URLs.
+Audit and correct `app/sitemap.ts` and `app/robots.ts`. Sitemap must use `https://booked4seasons.com` as the canonical public origin, include every published canonical route, and contain no broken URLs.
 
-## 13. Forms
+## 14. Forms
 
 Validate required fields, show accessible errors/pending state, prevent duplicate submission, and preserve service query preselection from service CTAs.
 
 `NEXT_PUBLIC_FORM_ENDPOINT` is the only approved public endpoint configuration. If it is absent or fails, show an honest unavailable/error state. Never show fake success.
 
-## 14. Performance
+## 15. Performance
 
 Use Next/Image, responsive sizes, optimized fonts, lazy loading, minimal client JavaScript, and code splitting. Avoid massive source images, heavy animation frameworks, page-builder dependencies, and unnecessary client components.
 
-## 15. Build / Docker / launch validation
+## 16. Build / Docker / launch validation
 
 Run and fix until passing:
 
@@ -286,20 +302,22 @@ npm run build
 npm run test:visual
 ```
 
-Then validate the frontend Docker build using the repository's canonical Docker deployment setup. Do not add a backend container.
+Then validate the frontend Docker build using the repository's canonical frontend-only Docker deployment setup for production server `49.12.145.107`. Do not add a backend container.
 
 Perform a route/link/image audit after build. Treat any broken internal route, image reference, header/footer control, service CTA, or mobile navigation behavior as a launch blocker.
 
-## 16. Required final audit
+## 17. Required final audit
 
 Return the following exact matrix with PASS/FAIL/NO/values filled in:
 
 ```text
 BOOKED4SEASONS_PUBLIC_FRONTEND
 
-MASTER_MISSION=BREERO_COMPLETE_PUBLIC_FRONTEND_ALL_PAGES_IMAGES_LINKS_BUTTONS_AND_LAUNCH
+MASTER_MISSION=booked4seasons.com_COMPLETE_PUBLIC_FRONTEND_ALL_PAGES_IMAGES_LINKS_BUTTONS_AND_LAUNCH
 BRAND=Booked4Seasons
+DOMAIN=booked4seasons.com
 REPOSITORY=appolon1908-hue/booked4seasons
+PRODUCTION_FRONTEND_SERVER=49.12.145.107
 
 PRIMARY_PAGE_COUNT=28
 SERVICE_PAGE_COUNT=17
@@ -383,6 +401,6 @@ Only use `FINAL_STATUS=PASS_BOOKED4SEASONS_PUBLIC_FRONTEND_COMPLETE` when all ca
 
 If everything except genuinely missing final image binaries passes, use `FINAL_STATUS=PASS_BOOKED4SEASONS_FRONTEND_COMPLETE_AWAITING_IMAGES` and list the exact missing files.
 
-## 17. Non-negotiable finish rule
+## 18. Non-negotiable finish rule
 
-Do not stop after creating layouts. Do not stop after adding images. Do not stop after fixing routes. Continue through full QA and build validation. The mission is complete only when the entire public frontend behaves as one coherent Booked4Seasons website and the final matrix is returned.
+Do not stop after creating layouts. Do not stop after adding images. Do not stop after fixing routes. Continue through full QA and build validation. The mission is complete only when the entire public frontend behaves as one coherent `booked4seasons.com` website and the final matrix is returned.
