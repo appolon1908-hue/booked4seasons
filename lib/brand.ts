@@ -1,5 +1,7 @@
 export const brand = {
   name: "Booked4Seasons",
+  legalOperator: "Codestra LLC DBA Booked4Seasons",
+  operatorLine: "Operated by Codestra LLC DBA Booked4Seasons",
   tagline: "Home Services for Every Season",
   domain: "booked4seasons.com",
   primaryMessage: "Whatever your property needs, get it booked.",
@@ -46,6 +48,10 @@ export const footerNavigation = {
     { label: "Contact", href: "/contact" },
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
+    { label: "Refunds & Returns", href: "/refund-policy" },
+    { label: "Cancellation", href: "/cancellation-policy" },
+    { label: "Service Fulfillment", href: "/service-policy" },
+    { label: "Professional Lead Policy", href: "/professional-lead-policy" },
   ],
 } as const;
 

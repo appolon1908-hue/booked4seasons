@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ServiceCard } from "@/components/ServiceCard";
 import { serviceImage, serviceImageAlt, services, type Service } from "@/lib/services";
+import { legal } from "@/lib/legal";
 
 const faqs = (service: Service) => [
   { q: `What kinds of ${service.name.toLowerCase()} requests can I submit?`, a: `${service.bullets.slice(0, 4).join(", ")}, and related requests can be described in the service form.` },
@@ -13,7 +14,7 @@ export function ServicePage({service}:{service:Service}) {
   const related=services.filter((item)=>item.category===service.category&&item.slug!==service.slug).slice(0,3);
   const questions=faqs(service);
   const schemas=[
-    {"@context":"https://schema.org","@type":"Service",name:`${service.name} Services`,description:service.description,url:`https://booked4seasons.com/services/${service.slug}`,provider:{"@type":"Organization",name:"Booked4Seasons",url:"https://booked4seasons.com"}},
+    {"@context":"https://schema.org","@type":"Service",name:`${service.name} Service Coordination`,description:service.description,url:`https://booked4seasons.com/services/${service.slug}`,broker:{"@type":"Organization",name:"Booked4Seasons",legalName:legal.operator,url:"https://booked4seasons.com"}},
     {"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://booked4seasons.com"},{"@type":"ListItem",position:2,name:"Services",item:"https://booked4seasons.com/services"},{"@type":"ListItem",position:3,name:service.name,item:`https://booked4seasons.com/services/${service.slug}`}]},
     {"@context":"https://schema.org","@type":"FAQPage",mainEntity:questions.map(({q,a})=>({"@type":"Question",name:q,acceptedAnswer:{"@type":"Answer",text:a}}))},
   ];
@@ -24,7 +25,7 @@ export function ServicePage({service}:{service:Service}) {
     <section className="section section-soft"><div className="container"><div className="section-heading"><div><p className="eyebrow">Why Booked4Seasons</p><h2>One familiar place to start.</h2></div></div><div className="benefit-grid benefit-grid-three"><div><strong>Simple requests</strong><p>Describe the job, location, and timing in one clear form.</p></div><div><strong>Multiple service categories</strong><p>Return for home, property, specialty, and vehicle needs.</p></div><div><strong>Local coordination</strong><p>Availability is confirmed for the requested service and location.</p></div></div></div></section>
     <section className="section section-dark"><div className="container"><p className="eyebrow">How it works</p><h2>A clear path from request to service.</h2><div className="steps"><div><span>1</span><h3>Tell us what you need</h3><p>Choose {service.name} and share useful details.</p></div><div><span>2</span><h3>Add location and timing</h3><p>Provide the address and preferred service window.</p></div><div><span>3</span><h3>We coordinate next steps</h3><p>Coverage and service details are confirmed with you.</p></div></div></div></section>
     <section className="section"><div className="container"><div className="section-heading"><div><p className="eyebrow">More {service.category}</p><h2>Related services</h2></div></div><div className="service-grid service-grid-three">{related.map(item=><ServiceCard key={item.slug} service={item}/>)}</div></div></section>
-    <section className="section section-soft"><div className="container split"><div><p className="eyebrow">Service information</p><h2>Helpful details before you request.</h2><p>Exact scope, availability, and next steps depend on the property, requested work, and local coverage. Photos and a clear description can help us understand the request.</p><Link href="/service-areas">How service areas work →</Link></div><div className="faq-list">{questions.map(({q,a})=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>
+    <section className="section section-soft"><div className="container split"><div><p className="eyebrow">Service information</p><h2>Helpful details before you request.</h2><p>Exact scope, availability, and next steps depend on the property, requested work, and local coverage. Photos and a clear description can help us understand the request.</p><p><strong>{legal.marketplaceRule}</strong> The provider is responsible for the estimate, pricing, qualifications, permits, insurance, workmanship, safety, and service performance.</p><Link href="/service-areas">How service areas work →</Link></div><div className="faq-list">{questions.map(({q,a})=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>
     <section className="section"><div className="container cta"><div><p className="eyebrow">Need {service.name}?</p><h2>Whatever needs attention, get it booked.</h2><p>Send the basics. No account required.</p></div><Link className="button" href={`/request-service?service=${service.slug}`}>Request service</Link></div></section>
   </>;
 }
