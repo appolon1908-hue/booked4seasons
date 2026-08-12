@@ -12,5 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><Header /><main>{children}</main><Footer /></body></html>;
+  const structuredData={"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://booked4seasons.com/#organization",name:"Booked4Seasons",url:"https://booked4seasons.com",logo:"https://booked4seasons.com/images/brand/logo-primary.svg"},{"@type":"WebSite","@id":"https://booked4seasons.com/#website",url:"https://booked4seasons.com",name:"Booked4Seasons",publisher:{"@id":"https://booked4seasons.com/#organization"}}]};
+  return <html lang="en"><body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(structuredData)}}/><a className="skip-link" href="#main-content">Skip to main content</a><Header /><main id="main-content">{children}</main><Footer /></body></html>;
 }

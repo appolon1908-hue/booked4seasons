@@ -13,6 +13,7 @@ export function ServicePage({service}:{service:Service}) {
   const related=services.filter((item)=>item.category===service.category&&item.slug!==service.slug).slice(0,3);
   const questions=faqs(service);
   const schemas=[
+    {"@context":"https://schema.org","@type":"Service",name:`${service.name} Services`,description:service.description,url:`https://booked4seasons.com/services/${service.slug}`,provider:{"@type":"Organization",name:"Booked4Seasons",url:"https://booked4seasons.com"}},
     {"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://booked4seasons.com"},{"@type":"ListItem",position:2,name:"Services",item:"https://booked4seasons.com/services"},{"@type":"ListItem",position:3,name:service.name,item:`https://booked4seasons.com/services/${service.slug}`}]},
     {"@context":"https://schema.org","@type":"FAQPage",mainEntity:questions.map(({q,a})=>({"@type":"Question",name:q,acceptedAnswer:{"@type":"Answer",text:a}}))},
   ];
