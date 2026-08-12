@@ -1,3 +1,4 @@
 import Link from "next/link";
-import type { Service } from "@/lib/services";
-export function ServiceCard({service}:{service:Service}){return <article className="service-card"><p className="eyebrow">{service.category}</p><h3>{service.name}</h3><p>{service.summary}</p><div className="card-actions"><Link href={`/services/${service.slug}`}>Learn more</Link><Link href={`/request-service?service=${service.slug}`}>Request →</Link></div></article>}
+import Image from "next/image";
+import { serviceImage, serviceImageAlt, type Service } from "@/lib/services";
+export function ServiceCard({service}:{service:Service}){return <article className="service-card"><Link className="service-card-image" href={`/services/${service.slug}`} aria-label={`Learn more about ${service.name}`}><Image src={serviceImage(service)} alt={serviceImageAlt(service)} fill sizes="(max-width: 620px) 100vw, (max-width: 900px) 50vw, (max-width: 1080px) 33vw, 25vw"/></Link><div className="service-card-body"><p className="eyebrow">{service.category}</p><h3>{service.name}</h3><p>{service.summary}</p><div className="card-actions"><Link href={`/services/${service.slug}`}>Learn more</Link><Link href={`/request-service?service=${service.slug}`}>Request service</Link></div></div></article>}

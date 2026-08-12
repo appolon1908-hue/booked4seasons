@@ -10,6 +10,38 @@ export type Service = {
   bullets: string[];
 };
 
+const imageNames: Record<string, string> = {
+  "ev-charger-installation": "ev-charger",
+  construction: "small-projects",
+};
+
+export function serviceImage(service: Service) {
+  return `/images/services/${imageNames[service.slug] ?? service.slug}.webp`;
+}
+
+export function serviceImageAlt(service: Service) {
+  const descriptions: Record<string, string> = {
+    hvac: "Professional HVAC technician servicing residential air-conditioning equipment",
+    plumbing: "Professional plumber repairing plumbing beneath a modern residential sink",
+    electrical: "Electrician safely working on a residential electrical panel",
+    "water-heater": "Technician inspecting a clean modern residential water heater",
+    "ev-charger-installation": "Professional installing a Level 2 electric vehicle charger at a home",
+    cleaning: "Residential cleaner working inside a bright modern home",
+    handyman: "Professional handyman completing a small household repair",
+    landscaping: "Landscaper maintaining an attractive residential property",
+    "lawn-care": "Lawn-care professional mowing a clean residential lawn",
+    "pest-control": "Pest-control professional inspecting a residential property",
+    "pool-service": "Pool professional testing water at a residential swimming pool",
+    "junk-removal": "Professional crew safely removing furniture from a home",
+    "water-damage": "Restoration professional checking moisture beside residential drying equipment",
+    "property-maintenance": "Property maintenance professional inspecting a well-kept home",
+    construction: "Home improvement professional completing a small residential project",
+    "mobile-car-wash": "Mobile car-wash professional cleaning a vehicle in a residential driveway",
+    "mobile-detailing": "Mobile detailer cleaning a vehicle interior at the customer's location",
+  };
+  return descriptions[service.slug];
+}
+
 export const services: Service[] = [
   { slug: "hvac", name: "HVAC", eyebrow: "Heating & cooling", category: "Home Comfort", summary: "Heating, cooling, diagnostics, repair, and maintenance.", description: "Keep your property comfortable through every season with convenient heating and cooling service requests.", bullets: ["AC diagnostics", "AC repair", "Preventive maintenance", "Heating service", "Thermostat service", "Installation requests"] },
   { slug: "plumbing", name: "Plumbing", eyebrow: "Leaks, drains & fixtures", category: "Home Comfort", summary: "Repairs, fixtures, drains, water lines, and troubleshooting.", description: "Request local plumbing help for common repairs, replacements, drainage issues, and diagnostics.", bullets: ["Leak diagnosis", "Fixture repair", "Faucet replacement", "Drain service", "Toilet service", "General plumbing"] },
