@@ -7,7 +7,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://booked4seasons.com"),
   title: { default: "Booked4Seasons | Home services for every season", template: "%s | Booked4Seasons" },
   description: "Request trusted local services for your home, property, or vehicle through Booked4Seasons.",
-  openGraph: { title: "Booked4Seasons", description: "Home services for every season.", type: "website" }
+  openGraph: { title: "Booked4Seasons", description: "Home services for every season.", type: "website", images: [{url:"/images/brand/social-share.png",width:1200,height:630,alt:"Booked4Seasons — Home Services for Every Season"}] },
+  icons: { icon: "/images/brand/favicon.svg" }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
