@@ -1,0 +1,25 @@
+services:
+  booked4seasons-frontend:
+    build:
+      context: ../app
+      dockerfile: Dockerfile
+    image: booked4seasons/frontend:${BOOKED4SEASONS_IMAGE_TAG:-production}
+    container_name: booked4seasons-frontend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+    expose: ["3000"]
+    networks: ["booked4seasons-frontend"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+networks:
+  booked4seasons-frontend:
+    external: true
