@@ -51,7 +51,6 @@ export const footerNavigation = {
     { label: "Refunds & Returns", href: "/refund-policy" },
     { label: "Cancellation", href: "/cancellation-policy" },
     { label: "Service Fulfillment", href: "/service-policy" },
-    { label: "Professional Lead Policy", href: "/professional-lead-policy" },
   ],
 } as const;
 

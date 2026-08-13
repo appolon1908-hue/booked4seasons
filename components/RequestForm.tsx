@@ -1,16 +1,116 @@
 "use client";
-import {FormEvent,useRef,useState} from "react";
-import {useSearchParams} from "next/navigation";
-import {submitPublicForm,type PublicFormKind} from "@/lib/formApi";
-import {services} from "@/lib/services";
-import {legal} from "@/lib/legal";
-import {track} from "@/lib/analytics";
 
-export function RequestForm({kind}:{kind:PublicFormKind}){
-  const params=useSearchParams(),preset=params.get("service")||"";
-  const [status,setStatus]=useState<"idle"|"sending"|"ok"|"error">("idle");
-  const startedAt=useRef(0),trackedStart=useRef(false);
-  function start(){if(!trackedStart.current){trackedStart.current=true;startedAt.current=Date.now();track("form_started",{form:kind})}}
-  async function submit(event:FormEvent<HTMLFormElement>){event.preventDefault();if(status==="sending")return;const form=event.currentTarget,data=Object.fromEntries(new FormData(form).entries());if(data.website)return;if(!startedAt.current||Date.now()-startedAt.current<1500){setStatus("error");track("form_failed",{form:kind,reason:"bot_check"});return}setStatus("sending");try{await submitPublicForm({kind,...data,source:"booked4seasons.com",sourceUrl:window.location.href,sourcePath:window.location.pathname});form.reset();setStatus("ok");track("form_submitted",{form:kind})}catch{setStatus("error");track("form_failed",{form:kind,reason:"transport"})}}
-  return <form className="request-form" onSubmit={submit} onFocusCapture={start}><label className="form-honeypot" aria-hidden="true">Leave this field blank<input name="website" tabIndex={-1} autoComplete="off"/></label><div className="form-grid"><label>First name<input name="firstName" required autoComplete="given-name"/></label><label>Last name<input name="lastName" required autoComplete="family-name"/></label><label>Email<input name="email" type="email" required autoComplete="email"/></label><label>Phone<input name="phone" type="tel" required autoComplete="tel"/></label>{kind!=="contact"&&<label className="span-2">Service<select name="service" defaultValue={preset} required><option value="">Choose a service</option>{services.map(s=><option key={s.slug} value={s.slug}>{s.name}</option>)}</select></label>}{kind==="service"&&<><label className="span-2">Service address<input name="address" required autoComplete="street-address"/></label><label>City<input name="city" required autoComplete="address-level2"/></label><label>State<input name="state" required autoComplete="address-level1"/></label><label>ZIP code<input name="postalCode" inputMode="numeric" required autoComplete="postal-code"/></label><label>Preferred date<input name="preferredDate" type="date"/></label><label>Preferred time<select name="preferredTime"><option>Flexible</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label><label className="span-2">Contact preference<select name="contactPreference"><option>Email</option><option>Phone call</option><option>Text message</option></select></label></>}{kind==="partner"&&<><label className="span-2">Company name<input name="company" required autoComplete="organization"/></label><label className="span-2">Cities / ZIP codes served<textarea name="areas" rows={3} required/></label></>}<label className="span-2">{kind==="partner"?"Tell us about your company":kind==="contact"?"How can we help?":"Describe the service needed"}<textarea name="message" rows={5} required/></label></div>{kind==="service"&&<div className="legal-disclosure"><strong>Independent-provider disclosure</strong><p>{legal.customerDisclosure}</p><label className="consent-check"><input name="marketplaceAcknowledgement" type="checkbox" required/> <span>I understand that this submits a service request and does not guarantee an appointment, price, or completed service.</span></label></div>}{kind==="partner"&&<div className="legal-disclosure"><strong>Independent-provider relationship</strong><p>Submitting interest does not create employment, agency, partnership, a provider agreement, or a guarantee of leads or work. Providers remain responsible for their business, qualifications, licensing, insurance, taxes, safety, estimates, pricing, and services.</p></div>}<button className="button" type="submit" disabled={status==="sending"} aria-busy={status==="sending"}>{status==="sending"?"Sending…":kind==="partner"?"Apply to become a provider":kind==="contact"?"Send message":"Request service"}</button><div aria-live="polite">{status==="ok"&&<p className="form-success">Thanks — your request was received.</p>}{status==="error"&&<p className="form-error">Online submission is not available right now. Please try again later.</p>}</div></form>
+import { FormEvent, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { submitPublicForm, type PublicFormKind } from "@/lib/formApi";
+import { services } from "@/lib/services";
+import { legal } from "@/lib/legal";
+import { track } from "@/lib/analytics";
+
+export function RequestForm({ kind }: { kind: PublicFormKind }) {
+  const params = useSearchParams();
+  const preset = params.get("service") || "";
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
+  const startedAt = useRef(0);
+  const trackedStart = useRef(false);
+
+  function start() {
+    if (!trackedStart.current) {
+      trackedStart.current = true;
+      startedAt.current = Date.now();
+      track("form_started", { form: kind });
+    }
+  }
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (status === "sending") return;
+    const form = event.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+    if (data.website) return;
+    if (!startedAt.current || Date.now() - startedAt.current < 1500) {
+      setStatus("error");
+      track("form_failed", { form: kind, reason: "bot_check" });
+      return;
+    }
+    setStatus("sending");
+    try {
+      await submitPublicForm({
+        kind,
+        ...data,
+        source: "booked4seasons.com",
+        sourceUrl: window.location.href,
+        sourcePath: window.location.pathname,
+      });
+      form.reset();
+      setStatus("ok");
+      track("form_submitted", { form: kind });
+    } catch {
+      setStatus("error");
+      track("form_failed", { form: kind, reason: "transport" });
+    }
+  }
+
+  return (
+    <form className="request-form" onSubmit={submit} onFocusCapture={start}>
+      <label className="form-honeypot" aria-hidden="true">
+        Leave this field blank
+        <input name="website" tabIndex={-1} autoComplete="off" />
+      </label>
+      <div className="form-grid">
+        <label>First name<input name="firstName" required autoComplete="given-name" /></label>
+        <label>Last name<input name="lastName" required autoComplete="family-name" /></label>
+        <label>Email<input name="email" type="email" required autoComplete="email" /></label>
+        <label>Phone<input name="phone" type="tel" required autoComplete="tel" /></label>
+        {kind !== "contact" && (
+          <label className="span-2">Service
+            <select name="service" defaultValue={preset} required>
+              <option value="">Choose a service</option>
+              {services.map((service) => <option key={service.slug} value={service.slug}>{service.name}</option>)}
+            </select>
+          </label>
+        )}
+        {kind === "service" && <>
+          <label className="span-2">Service address<input name="address" required autoComplete="street-address" /></label>
+          <label>City<input name="city" required autoComplete="address-level2" /></label>
+          <label>State<input name="state" required autoComplete="address-level1" /></label>
+          <label>ZIP code<input name="postalCode" inputMode="numeric" required autoComplete="postal-code" /></label>
+          <label>Preferred date<input name="preferredDate" type="date" /></label>
+          <label>Preferred time<select name="preferredTime"><option>Flexible</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label>
+          <label className="span-2">Contact preference<select name="contactPreference"><option>Email</option><option>Phone call</option><option>Text message</option></select></label>
+        </>}
+        {kind === "partner" && <>
+          <label className="span-2">Company name<input name="company" required autoComplete="organization" /></label>
+          <label className="span-2">Cities / ZIP codes served<textarea name="areas" rows={3} required /></label>
+        </>}
+        <label className="span-2">
+          {kind === "partner" ? "Tell us about your company" : kind === "contact" ? "How can we help?" : "Describe the service needed"}
+          <textarea name="message" rows={5} required />
+        </label>
+      </div>
+      {kind === "service" && <div className="legal-disclosure">
+        <strong>Independent-provider disclosure</strong>
+        <p>{legal.customerDisclosure}</p>
+        <label className="consent-check"><input name="marketplaceAcknowledgement" type="checkbox" required /> <span>I understand that this submits a service request and does not guarantee an appointment, price, or completed service.</span></label>
+      </div>}
+      {kind === "partner" && <div className="legal-disclosure">
+        <strong>Independent-provider relationship</strong>
+        <p>Submitting interest does not create employment, agency, partnership, a provider agreement, or a guarantee of work. Providers remain responsible for their business, qualifications, licensing, insurance, taxes, safety, estimates, pricing, and services.</p>
+      </div>}
+      <div className="legal-disclosure">
+        <strong>Optional SMS consent</strong>
+        <label className="consent-check">
+          <input name="smsConsent" type="checkbox" value="yes" />
+          <span>By checking this box, I agree to receive recurring service updates, appointment notifications, reminders, and promotional text messages from Booked4Seasons at the number provided. Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. See our <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</span>
+        </label>
+      </div>
+      <button className="button" type="submit" disabled={status === "sending"} aria-busy={status === "sending"}>
+        {status === "sending" ? "Sending…" : kind === "partner" ? "Apply to become a provider" : kind === "contact" ? "Send message" : "Request service"}
+      </button>
+      <div aria-live="polite">
+        {status === "ok" && <p className="form-success">Thanks — your request was received.</p>}
+        {status === "error" && <p className="form-error">Online submission is not available right now. Please try again later.</p>}
+      </div>
+    </form>
+  );
 }
