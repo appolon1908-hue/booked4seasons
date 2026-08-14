@@ -14,4 +14,8 @@ assert.match(read("components/LeadConnectorChat.tsx"),/data-widget-id="6a7ca9509
 assert.doesNotMatch(read("components/LeadConnectorChat.tsx"),/data-source=/);
 const all=fs.readdirSync(path.join(root,"app"),{recursive:true}).filter(x=>String(x).endsWith(".tsx")).map(x=>read(path.join("app",String(x)))).join("\n");
 for(const phrase of [/buying leads/i,/selling leads/i,/lead resale/i,/affiliate lead program/i,/payment webhook/i,/credit.card field/i]) assert.doesNotMatch(all,phrase);
+const repositoryText=[".env.example","Dockerfile","README.md","infra/docker-compose.frontend.yml","app/api/public-forms/route.ts"].map(read).join("\n");
+const legacyBrand=String.fromCharCode(98,114,101,101,114,111);
+assert.ok(!repositoryText.toLowerCase().includes(legacyBrand),"legacy brand reference found");
+assert.match(repositoryText,/BOOKED4SEASONS_API_BASE_URL/);
 console.log(`PASS compliance routes=${routes.length} required_fields=15 widget=6a7ca95093aa928cd28c82f8`);

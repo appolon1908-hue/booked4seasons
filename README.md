@@ -45,7 +45,7 @@ Then open `http://localhost:3000`.
 
 ## Forms
 
-Set server-only `FORM_API_BASE_URL` to the approved HTTPS BREERO API origin. The browser submits to the same-domain `/api/public-forms` route, which validates the form type and forwards to the matching public API contract. No API credential or upstream address is exposed in browser configuration.
+Set server-only `BOOKED4SEASONS_API_BASE_URL` to the approved Booked4Seasons API origin. The browser submits only to the same-domain `/api/public-forms` route, which validates the form type and forwards to the matching Booked4Seasons API contract. No API credential or upstream address is exposed in browser configuration.
 
 Expected payload includes `kind` (`service`, `contact`, or `partner`) plus the submitted form fields.
 

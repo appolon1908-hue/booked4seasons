@@ -15,7 +15,7 @@ services:
       HOSTNAME: "0.0.0.0"
       NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://booked4seasons.com}
       NEXT_PUBLIC_ANALYTICS_ENDPOINT: ${NEXT_PUBLIC_ANALYTICS_ENDPOINT:-}
-      FORM_API_BASE_URL: ${FORM_API_BASE_URL:-https://api.breero.com}
+      BOOKED4SEASONS_API_BASE_URL: ${BOOKED4SEASONS_API_BASE_URL:?Set the approved Booked4Seasons API origin}
     expose: ["3000"]
     networks: ["booked4seasons-frontend"]
     security_opt: ["no-new-privileges:true"]

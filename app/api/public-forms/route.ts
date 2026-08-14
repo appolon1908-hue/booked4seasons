@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 const paths = { service: "/api/v1/service-requests", contact: "/api/v1/contact", partner: "/api/v1/provider-interest" } as const;
 
 export async function POST(request: NextRequest) {
-  const base = process.env.FORM_API_BASE_URL?.trim();
+  const base = process.env.BOOKED4SEASONS_API_BASE_URL?.trim();
   if (!base || !base.startsWith("https://")) return NextResponse.json({ error: "Request delivery is unavailable." }, { status: 503 });
   let payload: Record<string, unknown>;
   try { payload = await request.json(); } catch { return NextResponse.json({ error: "Invalid request." }, { status: 400 }); }
