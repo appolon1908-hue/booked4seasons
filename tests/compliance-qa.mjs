@@ -9,6 +9,10 @@ for(const route of routes) assert.ok(fs.existsSync(path.join(root,"app",route,"p
 const form=read("components/RequestForm.tsx");
 for(const field of ["firstName","lastName","email","phone","service","address","city","state","postalCode","preferredDate","preferredTime","message","providerAuthorization","smsConsent","termsAcknowledgement"]) assert.match(form,new RegExp(`name=[\\"']${field}[\\"']`),`missing field ${field}`);
 assert.match(form,/type="checkbox" value="yes"/); assert.doesNotMatch(form,/defaultChecked/);
+assert.match(read("lib/compliance.ts"),/By checking this box, I consent to receive recurring SMS messages from Booked4Seasons, operated by Codestra LLC, concerning my service request, appointment coordination, and provider updates\. Message frequency varies\. Message and data rates may apply\. Reply HELP for help or STOP to opt out\. Consent is not a condition of purchase\./);
+assert.match(read("app/privacy/page.tsx"),/Mobile phone numbers, SMS opt-in data, and messaging consent will not be shared, sold, rented, or transferred to third parties or affiliates for marketing or promotional purposes\./);
+const smsTerms=read("app/sms-terms/page.tsx");
+for(const requirement of [/Booked4Seasons messaging program/,/Message frequency varies/,/Message and data rates may apply/,/Reply STOP/,/Reply HELP/,/Carriers are not liable for delayed or undelivered messages/,/href="\/privacy"/]) assert.match(smsTerms,requirement);
 assert.match(form,/not yet a confirmed appointment/i); assert.match(form,/No online payment is required or collected/i);
 assert.match(read("components/LeadConnectorChat.tsx"),/data-widget-id="6a7ca95093aa928cd28c82f8"/);
 assert.doesNotMatch(read("components/LeadConnectorChat.tsx"),/data-source=/);

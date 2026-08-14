@@ -33,7 +33,7 @@ export const usStates = [
 ] as const;
 
 export const smsDisclosure =
-  "By checking this box, I agree to receive recurring automated service-request and appointment text messages from Booked4Seasons at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to cancel or HELP for help. Consent is not a condition of purchase.";
+  "By checking this box, I consent to receive recurring SMS messages from Booked4Seasons, operated by Codestra LLC, concerning my service request, appointment coordination, and provider updates. Message frequency varies. Message and data rates may apply. Reply HELP for help or STOP to opt out. Consent is not a condition of purchase.";
 
 export const providerAuthorization =
   "I authorize Booked4Seasons to use my service-request information and provide the information necessary to a selected independent service provider solely to respond to this request. This authorization does not enroll me in marketing messages.";
