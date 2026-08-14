@@ -45,7 +45,7 @@ Then open `http://localhost:3000`.
 
 ## Forms
 
-Set `NEXT_PUBLIC_FORM_ENDPOINT` to the HTTPS endpoint that should receive JSON form submissions. Until this is configured, forms remain in safe demo mode and clearly tell the user that live submission is not configured.
+Set server-only `FORM_API_BASE_URL` to the approved HTTPS BREERO API origin. The browser submits to the same-domain `/api/public-forms` route, which validates the form type and forwards to the matching public API contract. No API credential or upstream address is exposed in browser configuration.
 
 Expected payload includes `kind` (`service`, `contact`, or `partner`) plus the submitted form fields.
 
@@ -54,8 +54,8 @@ Do not put API secrets in `NEXT_PUBLIC_*` variables.
 ## Production checklist
 
 - Configure the real form/API endpoint.
-- Add production phone number and support email.
-- Replace starter Privacy and Terms pages with approved legal text.
+- Verify the legal name, DBA, address, support phone, and support email against authoritative business records before deployment.
+- Obtain Legal/Compliance approval for production policy wording.
 - Configure DNS for `booked4seasons.com`.
 - Deploy behind HTTPS.
 - Add analytics only after consent/privacy requirements are defined.

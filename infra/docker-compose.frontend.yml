@@ -5,7 +5,6 @@ services:
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://booked4seasons.com}
-        NEXT_PUBLIC_FORM_ENDPOINT: ${NEXT_PUBLIC_FORM_ENDPOINT:-}
         NEXT_PUBLIC_ANALYTICS_ENDPOINT: ${NEXT_PUBLIC_ANALYTICS_ENDPOINT:-}
     image: booked4seasons/frontend:${BOOKED4SEASONS_IMAGE_TAG:-production}
     container_name: booked4seasons-frontend
@@ -15,12 +14,15 @@ services:
       PORT: "3000"
       HOSTNAME: "0.0.0.0"
       NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://booked4seasons.com}
-      NEXT_PUBLIC_FORM_ENDPOINT: ${NEXT_PUBLIC_FORM_ENDPOINT:-}
       NEXT_PUBLIC_ANALYTICS_ENDPOINT: ${NEXT_PUBLIC_ANALYTICS_ENDPOINT:-}
+      FORM_API_BASE_URL: ${FORM_API_BASE_URL:-https://api.breero.com}
     expose: ["3000"]
     networks: ["booked4seasons-frontend"]
     security_opt: ["no-new-privileges:true"]
     cap_drop: ["ALL"]
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
       interval: 30s

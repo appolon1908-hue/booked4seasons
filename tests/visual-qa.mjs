@@ -7,6 +7,8 @@ for (const size of sizes) {
   const errors=[];
   page.on("console",msg=>{if(msg.type()==="error")errors.push(msg.text())});
   await page.goto("http://127.0.0.1:3010",{waitUntil:"networkidle"});
+  const reject=page.getByRole("button",{name:"Reject nonessential"});
+  if(await reject.isVisible())await reject.click();
   await page.evaluate(async()=>{for(let y=0;y<document.body.scrollHeight;y+=700){window.scrollTo(0,y);await new Promise(resolve=>setTimeout(resolve,40))}window.scrollTo(0,0)});
   await page.waitForTimeout(2500);
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth);
@@ -18,7 +20,7 @@ for (const size of sizes) {
   await page.goto("http://127.0.0.1:3010/request-service",{waitUntil:"networkidle"});
   if(await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth))throw new Error(`${size.name}: request page overflow`);
   await page.getByLabel("First name").fill("QA");
-  await page.locator('select[name="service"]').selectOption("hvac");
+  await page.locator('select[name="service"]').selectOption("plumbing");
   console.log(`PASS ${size.name} ${size.width}x${size.height}`);
   await page.close();
 }
