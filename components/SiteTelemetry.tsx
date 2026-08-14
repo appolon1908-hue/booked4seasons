@@ -27,21 +27,10 @@ export function SiteTelemetry() {
     window.addEventListener("error", reportError);
     window.addEventListener("unhandledrejection", reportRejection);
 
-    let chatButton: Element | null = null;
-    const attachChat = () => {
-      const button = document.querySelector("chat-widget")?.shadowRoot?.querySelector("#lc_text-widget--btn");
-      if (button && button !== chatButton) {
-        chatButton = button;
-        button.addEventListener("click", () => track("chat_opened"), { once: true });
-      }
-    };
-    const timer = window.setInterval(attachChat, 1_000);
-    attachChat();
     return () => {
       document.removeEventListener("click", click);
       window.removeEventListener("error", reportError);
       window.removeEventListener("unhandledrejection", reportRejection);
-      window.clearInterval(timer);
     };
   }, []);
 
