@@ -17,8 +17,8 @@ assert.match(form,/not yet a confirmed appointment/i); assert.match(form,/No onl
 const chat=read("components/LeadConnectorChat.tsx");
 assert.match(chat,/src="https:\/\/widgets\.leadconnectorhq\.com\/loader\.js"/);
 assert.match(chat,/data-resources-url="https:\/\/widgets\.leadconnectorhq\.com\/chat-widget\/loader\.js"/);
-assert.match(chat,/data-widget-id="6a7ca95093aa928cd28c82f8"/);
-assert.doesNotMatch(chat,/data-source=/);
+assert.match(chat,/data-widget-id="6a7e73b77c66d2cc055903a3"/);
+assert.match(chat,/data-source="WEB_USER"/);
 for(const route of ["\/request-service","\/contact","\/become-a-pro"]) assert.match(chat,new RegExp(route.replaceAll("/","\\/")),`chat exclusion missing ${route}`);
 assert.match(chat,/if \(hasFirstPartyPhoneForm\) return null/);
 const all=fs.readdirSync(path.join(root,"app"),{recursive:true}).filter(x=>String(x).endsWith(".tsx")).map(x=>read(path.join("app",String(x)))).join("\n");
@@ -27,4 +27,4 @@ const repositoryText=[".env.example","Dockerfile","README.md","infra/docker-comp
 const legacyBrand=String.fromCharCode(98,114,101,101,114,111);
 assert.ok(!repositoryText.toLowerCase().includes(legacyBrand),"legacy brand reference found");
 assert.match(repositoryText,/BOOKED4SEASONS_API_BASE_URL/);
-console.log(`PASS compliance routes=${routes.length} required_fields=15 leadconnector_widget=6a7ca95093aa928cd28c82f8`);
+console.log(`PASS compliance routes=${routes.length} required_fields=15 leadconnector_widget=6a7e73b77c66d2cc055903a3`);
