@@ -15,7 +15,7 @@ Customers opt in by visiting `https://booked4seasons.com/request-service`, enter
 
 ## Exact opt-in wording
 
-> By checking this box, I agree to receive recurring automated service-request and appointment text messages from Booked4Seasons at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to cancel or HELP for help. Consent is not a condition of purchase.
+> By checking this box, I consent to receive recurring SMS messages from Booked4Seasons, operated by Codestra LLC, concerning my service request, appointment coordination, and provider updates. Message frequency varies. Message and data rates may apply. Reply HELP for help or STOP to opt out. Consent is not a condition of purchase. See our Terms of Service and Privacy Policy.
 
 ## Draft samples — do not send before registration and authorization
 

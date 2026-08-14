@@ -62,8 +62,8 @@ export function RequestForm({ kind }: { kind: PublicFormKind }) {
     {kind === "service" && <>
       <div className="legal-disclosure"><strong>A request is not a confirmed appointment</strong><p>Submission does not guarantee provider availability or assignment. If coverage or capacity is unavailable, your request will remain pending manual dispatch.</p></div>
       <label className="consent-check"><input name="providerAuthorization" type="checkbox" required /><span>{providerAuthorization}</span></label>
-      <label className="consent-check"><input name="smsConsent" type="checkbox" value="yes" /><span>{smsDisclosure} View the <a href="/sms-terms" target="_blank">SMS Terms</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</span></label>
     </>}
+    <label className="consent-check"><input name="smsConsent" type="checkbox" value="yes" /><span>{smsDisclosure} See our <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</span></label>
     <label className="consent-check"><input name="termsAcknowledgement" type="checkbox" required /><span>I agree to the <a href="/terms" target="_blank">Terms and Conditions</a> and acknowledge the <a href="/privacy" target="_blank">Privacy Policy</a>.</span></label>
     <p className="payment-notice"><strong>No online payment is required or collected.</strong> All service work is quote-required; final scope and price are agreed with the independent provider.</p>
     <button className="button" type="submit" disabled={status === "sending"} aria-busy={status === "sending"}>{status === "sending" ? "Sending…" : kind === "partner" ? "Apply to become a provider" : kind === "contact" ? "Send message" : "Request service"}</button>
