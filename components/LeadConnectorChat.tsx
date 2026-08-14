@@ -27,7 +27,6 @@ export function LeadConnectorChat() {
     src="https://widgets.leadconnectorhq.com/loader.js"
     data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
     data-widget-id="6a7ca95093aa928cd28c82f8"
-    data-source="WEB_USER"
     strategy="afterInteractive"
   />;
 }

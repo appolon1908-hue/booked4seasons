@@ -18,7 +18,7 @@ const chat=read("components/LeadConnectorChat.tsx");
 assert.match(chat,/src="https:\/\/widgets\.leadconnectorhq\.com\/loader\.js"/);
 assert.match(chat,/data-resources-url="https:\/\/widgets\.leadconnectorhq\.com\/chat-widget\/loader\.js"/);
 assert.match(chat,/data-widget-id="6a7ca95093aa928cd28c82f8"/);
-assert.match(chat,/data-source="WEB_USER"/);
+assert.doesNotMatch(chat,/data-source=/);
 for(const route of ["\/request-service","\/contact","\/become-a-pro"]) assert.match(chat,new RegExp(route.replaceAll("/","\\/")),`chat exclusion missing ${route}`);
 assert.match(chat,/if \(hasFirstPartyPhoneForm\) return null/);
 const all=fs.readdirSync(path.join(root,"app"),{recursive:true}).filter(x=>String(x).endsWith(".tsx")).map(x=>read(path.join("app",String(x)))).join("\n");
