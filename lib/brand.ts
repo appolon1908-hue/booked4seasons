@@ -1,7 +1,7 @@
 export const brand = {
   name: "Booked4Seasons",
-  legalOperator: "Codestra LLC DBA Booked4Seasons",
-  operatorLine: "Operated by Codestra LLC DBA Booked4Seasons",
+  legalOperator: "Codestra LLC",
+  operatorLine: "Booked4Seasons is operated by Codestra LLC",
   tagline: "Home Services for Every Season",
   domain: "booked4seasons.com",
   primaryMessage: "Whatever your property needs, get it booked.",

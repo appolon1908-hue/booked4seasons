@@ -1,8 +1,8 @@
 export const legal = {
-  operator: "Codestra LLC DBA Booked4Seasons",
-  operatorLine: "Operated by Codestra LLC DBA Booked4Seasons",
+  operator: "Codestra LLC",
+  operatorLine: "Booked4Seasons is operated by Codestra LLC",
   platformDescription:
-    "Booked4Seasons is a service-request and coordination platform operated by Codestra LLC DBA Booked4Seasons.",
+    "Booked4Seasons is a service-coordination platform operated by Codestra LLC. Customers submit service requests, and Booked4Seasons coordinates with independent service providers that may be available to respond.",
   marketplaceRule:
     "Booked4Seasons coordinates the opportunity. The independent provider performs the underlying service unless Booked4Seasons expressly states otherwise.",
   customerDisclosure:
@@ -16,5 +16,8 @@ export const legal = {
     refunds: "/refund-policy",
     cancellations: "/cancellation-policy",
     fulfillment: "/service-policy",
+    sms: "/sms-terms",
+    cookies: "/cookies",
+    preferences: "/communications-preferences",
   },
 } as const;
