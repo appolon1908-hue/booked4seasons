@@ -10,7 +10,7 @@ export function Footer() {
       <div>
         <Link className="brand footer-brand brand-logo" href="/" aria-label="Booked4Seasons home"><Image src="/images/brand/logo-dark.svg" alt="Booked4Seasons" width={270} height={48}/></Link>
         <p>Home services for every season.</p><p>{legal.platformDescription}</p>
-        <p><strong>{legal.operatorLine}</strong><br/>20633 Longenbaugh Rd<br/>Cypress, TX 77433<br/><a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a><br/><a href={legal.supportPhoneHref}>{legal.supportPhone}</a><br/><a href="https://codestra.co" target="_blank" rel="noreferrer">Corporate site: Codestra.co ↗</a></p>
+        <p><strong>{legal.operatorLine}</strong><br/>20633 Longenbaugh Rd<br/>Cypress, TX 77433<br/><a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a><br/><a href={legal.supportPhoneHref}>{legal.supportPhone}</a></p>
       </div>
       <div><h3>Home Comfort</h3>{servicesByCategory["Home Comfort"].map(service => <Link key={service.slug} href={`/services/${service.slug}`}>{service.name}</Link>)}</div>
       <div><h3>Home & Property</h3>{servicesByCategory["Home & Property"].map(service => <Link key={service.slug} href={`/services/${service.slug}`}>{service.name}</Link>)}</div>
