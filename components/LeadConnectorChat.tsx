@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
  * Widget fields, consent text, and messaging behavior are managed in the
  * approved LeadConnector widget configuration for this widget ID.
  */
-const phoneFormRoutes = new Set(["/request-service", "/contact", "/become-a-pro"]);
+const phoneFormRoutes = new Set(["/contact", "/become-a-pro"]);
 
 export function LeadConnectorChat() {
   const pathname = usePathname();
